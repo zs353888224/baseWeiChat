@@ -1,0 +1,36 @@
+
+description = '服务器的通用配置, 拦截器, 安全防护等'
+dependencies {
+    compile project(':baseWeichat-domain')
+    compile group: 'javax.annotation', name: 'jsr250-api', version:'1.0'
+
+    compile("org.terasoluna.gfw:terasoluna-gfw-web:${terasolunaVersion}")
+    compile("org.terasoluna.gfw:terasoluna-gfw-security-web:${terasolunaVersion}")
+    compile("org.terasoluna.gfw:terasoluna-gfw-recommended-web-dependencies:${terasolunaVersion}")
+
+    compile group: 'org.springframework', name: 'spring-oxm', version:'3.2.10.RELEASE'
+    compile group: 'com.h2database', name: 'h2', version:'1.3.156'
+
+    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.0.RELEASE'
+    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.0.RELEASE'
+    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.0.RELEASE'
+
+    testCompile(group: 'junit', name: 'junit-dep', version:'4.7') {
+        exclude(module: 'hamcrest-core')
+    }
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version:'1.3'
+    testCompile group: 'org.mockito', name: 'mockito-all', version:'1.9.0'
+    testCompile(group: 'org.springframework', name: 'spring-test', version:'3.2.10.RELEASE') {
+        exclude(module: 'commons-logging')
+    }
+    compile(group: 'org.apache.tomcat', name: 'tomcat-servlet-api', version:'7.0.53') {
+        /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+        This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+        Please review and delete this closure when resolved. */
+    }
+    compile(group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version:'7.0.53') {
+        /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+        This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+        Please review and delete this closure when resolved. */
+    }
+}
