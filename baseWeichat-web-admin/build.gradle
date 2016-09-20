@@ -1,0 +1,11 @@
+apply plugin: 'war'
+
+description = ''
+dependencies {
+    compile project(':baseWeichat-web-common')
+    testCompile(group: 'org.springframework', name: 'spring-test', version:'3.2.10.RELEASE') {
+        exclude(module: 'commons-logging')
+    }
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-servlet-api', version:'7.0.53'
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version:'7.0.53'
+}

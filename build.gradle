@@ -1,0 +1,64 @@
+allprojects {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    group = 'com.wscq'
+    version = '1.0-SNAPSHOT'
+}
+
+ext {
+    terasolunaVersion = "5.1.0.RELEASE"
+    junitVersion = "4.11"
+    mockitoVersion="1.10.8"
+    springVersion = "4.1.4.RELEASE"
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    compileJava.options.encoding = 'UTF-8'
+
+    repositories {
+        mavenLocal()
+
+        maven {
+            url "http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/"
+        }
+        maven {
+            url "http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/"
+        }
+        maven {
+            url "http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/"
+        }
+        maven { url "https://oss.sonatype.org/content/groups/public/" }
+        maven { url "http://repo1.maven.org/maven2/" }
+        maven { url "http://repo.maven.apache.org/maven2" }
+    }
+
+
+    apply from: "$rootProject.projectDir/gretty.plugin"
+
+    gretty {
+        httpPort = 2333
+        debugPort = httpPort + 1
+        servicePort = httpPort + 2
+        statusPort = httpPort + 3
+        httpsPort = httpPort + 4
+        httpsEnabled = false
+        fastReload = true
+        scanInterval = 100
+        managedClassReload = false
+        recompileOnSourceChange = false
+        reloadOnClassChange = true
+        reloadOnConfigChange = true
+        reloadOnLibChange = true
+        contextPath = '/wscq/'
+        jvmArgs = ['-Xmx1024M', '-XX:PermSize=128M', '-XX:MaxPermSize=256M']
+        servletContainer = 'tomcat8'
+        inplaceMode = 'hard'
+        debugSuspend = false
+    }
+}
+

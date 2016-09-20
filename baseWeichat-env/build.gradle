@@ -1,0 +1,31 @@
+description = ''
+dependencies {
+    compile("org.terasoluna.gfw:terasoluna-gfw-common:${terasolunaVersion}")
+    compile("org.terasoluna.gfw:terasoluna-gfw-jodatime:${terasolunaVersion}")
+    compile("org.terasoluna.gfw:terasoluna-gfw-mybatis3:${terasolunaVersion}")
+    compile("org.terasoluna.gfw:terasoluna-gfw-recommended-dependencies:${terasolunaVersion}")
+
+    /*
+    connection pool
+     */
+    compile("com.zaxxer:HikariCP-java6:2.3.12")
+}
+
+task copyConf {
+    doFirst {
+        def p = "dev"
+        if (project.hasProperty("profile")) {
+            p = "${profile}"
+        }
+        copy {
+            from('src/main/conf/' + p) {
+                include '*.properties'
+            }
+            into('build/resources/main/META-INF/spring')
+        }
+    }
+}
+
+gradle.projectsEvaluated {
+    classes.dependsOn(copyConf)
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>主页</title>
+<link rel="stylesheet" th:href="@{/resources/app/css/styles.css}" />
+</head>
+<body>
+    <div id="wrapper">
+        <h2>这真的是主页!</h2>
+        <p>hello! <span th:text="${name}"></span></p>
+    </div>
+</body>
+</html>

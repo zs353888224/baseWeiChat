@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Resource Not Found Error!</title>
+<link rel="stylesheet" th:href="@{/resources/app/css/styles.css}" />
+</head>
+<body>
+    <div id="wrapper">
+        <h1 th:text="${errorCode}"></h1>
+        <p th:text="${errorMessage}">Resource Not Found Error!</p>
+    </div>
+</body>
+</html>
