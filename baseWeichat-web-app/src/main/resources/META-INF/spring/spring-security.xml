@@ -23,7 +23,6 @@
         <sec:form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error=true"/>
         <sec:logout logout-success-url="/" delete-cookies="JSESSIONID"/>
         <sec:intercept-url pattern="/login" access="permitAll"/>
-        <sec:intercept-url pattern="/index" access="permitAll"/>
         <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
         <sec:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>
     </sec:http>
@@ -32,6 +31,17 @@
             <sec:password-encoder ref="passwordEncoder"/>
         </sec:authentication-provider>
     </sec:authentication-manager>
+
+    <!-- 配置的登录验证, 因为版本问题, 会出现Bad credentials替代not found(因为总会有错暂时搁置)-->
+    <!--<sec:authentication-manager>-->
+        <!--<sec:authentication-provider ref="authenticationProvider">-->
+        <!--</sec:authentication-provider>-->
+    <!--</sec:authentication-manager>-->
+    <!--<bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">-->
+        <!--<property name="userDetailsService" ref="wscqUserDetailsService" />-->
+        <!--<property name="hideUserNotFoundExceptions" value="false" />-->
+        <!--<property name="passwordEncoder" ref="passwordEncoder"/>-->
+    <!--</bean>-->
 
     <!-- CSRF Protection 设置免去CSRF验证的地址 -->
     <bean id="csrfSecurityRequestMatcher" class="com.wscq.baseWeiChat.web.common.security.CsrfSecurityRequestMatcher">

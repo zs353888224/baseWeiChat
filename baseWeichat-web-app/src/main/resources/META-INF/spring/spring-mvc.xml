@@ -10,12 +10,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver"/>
-            <bean class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver"/>
-        </mvc:argument-resolvers>
-    </mvc:annotation-driven>
+    <mvc:annotation-driven/>
 
     <mvc:default-servlet-handler/>
 
@@ -24,7 +19,6 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/,classpath:META-INF/resources/"
                    cache-period="#{60 * 60}"/>
-
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>

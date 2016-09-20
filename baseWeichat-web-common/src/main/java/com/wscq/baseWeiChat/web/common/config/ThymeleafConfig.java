@@ -16,7 +16,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 /**
- * 貌似Thymeleaf3.0.0以后不支持xml配置, 蛋疼
+ * 貌似Thymeleaf3.0.0以后不支持xml配置
  *
  * Created by zs on 16/9/19.
  */
