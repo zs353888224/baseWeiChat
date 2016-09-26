@@ -32,7 +32,7 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
-    <!-- 配置的登录验证, 因为版本问题, 会出现Bad credentials替代not found(因为总会有错暂时搁置)-->
+    <!-- 之前出现Bad credentials的问题, 因为没有进行session设置, 登录老是报错, 目前已修正-->
     <!--<sec:authentication-manager>-->
         <!--<sec:authentication-provider ref="authenticationProvider">-->
         <!--</sec:authentication-provider>-->

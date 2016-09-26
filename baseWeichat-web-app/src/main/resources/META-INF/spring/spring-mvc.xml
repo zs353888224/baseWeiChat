@@ -94,5 +94,4 @@
         <aop:advisor advice-ref="handlerExceptionResolverLoggingInterceptor"
                      pointcut="execution(* org.springframework.web.servlet.HandlerExceptionResolver.resolveException(..))"/>
     </aop:config>
-
 </beans>
