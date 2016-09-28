@@ -13,6 +13,7 @@ public class WscqUserDetails extends User {
     private final Account account;
 
     public WscqUserDetails(Account account) {
+        // 为不同的用户添加角色标签
         super(account.getUserName(), account.getPassword(), AuthorityUtils.createAuthorityList("ROLE_" + account.getAccountType()));
         this.account = account;
     }

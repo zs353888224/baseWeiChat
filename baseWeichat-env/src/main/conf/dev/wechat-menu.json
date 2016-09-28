@@ -1,0 +1,22 @@
+{
+  "button": [
+    {
+      "name": "测试",
+      "sub_button": [
+        {
+          "type": "view",
+          "name": "回调",
+          "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx53460d4471a3993d&redirect_uri=http%3A%2F%2F595ba292.ngrok.io%2Fwscq%2Findex&response_type=code&scope=snsapi_base&state=11#wechat_redirect"
+        },
+        {
+          "type": "view",
+          "name": "直接网址",
+          "url": "https://595ba292.ngrok.io/wscq/index"
+        }
+      ]
+    }
+  ]
+}
+
+
+

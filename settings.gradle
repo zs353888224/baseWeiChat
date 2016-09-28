@@ -1,0 +1,8 @@
+rootProject.name = 'baseWeichat'
+include 'baseWeichat-env'
+include 'baseWeichat-domain'
+include 'baseWeichat-web-common'
+include 'baseWeichat-web-admin'
+include 'baseWeichat-web-app'
+include 'baseWeichat-initdb'
+
