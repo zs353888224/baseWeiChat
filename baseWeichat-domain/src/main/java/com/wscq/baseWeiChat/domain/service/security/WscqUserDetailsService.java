@@ -16,6 +16,7 @@ public class WscqUserDetailsService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 按照用户名在数据库中查询出用户数据, 以下为测试
         Account account = new Account();
         account.setUserId(1l);
         account.setAccountType("SUPPER");
