@@ -45,6 +45,10 @@ dependencies {
     /** 在需要的生成getter和setter的类上加上@Data可自动生成 */
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
 
+    compile group:'redis.clients',name:'jedis',version:'2.8.1'
+    compile group:'de.ruedigermoeller',name:'fst',version:'1.62'
+    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '1.6.2.RELEASE'
+
     testCompile group: 'junit', name: 'junit', version: '4.7'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.0'
     testCompile(group: 'org.springframework', name: 'spring-test', version: '3.2.10.RELEASE') {

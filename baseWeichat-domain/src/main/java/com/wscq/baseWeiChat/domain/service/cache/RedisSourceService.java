@@ -4,7 +4,7 @@ import redis.clients.jedis.ShardedJedis;
 
 /**
  * redis连接池
- *
+ * <p>
  * Created by zs on 16/9/27.
  */
 public interface RedisSourceService {

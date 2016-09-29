@@ -1,5 +1,6 @@
 package com.wscq.baseWeiChat.domain.service.cache;
 
+import com.wscq.baseWeiChat.domain.constants.SystemConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,6 @@ import java.io.Serializable;
 /**
  * Created by zs on 16/9/27.
  */
-// TODO 需要测试这样搞是否能支持所有的对象类型
 @Service
 public class CacheServiceImpl implements CacheService {
 
@@ -21,18 +21,27 @@ public class CacheServiceImpl implements CacheService {
     private RedisSourceService redisSourceService;
 
     @Override
-    public void save(String key, Serializable obj, int time) {
+    public void save(String key, Serializable obj, Integer time) {
         ShardedJedis shardedJedis = redisSourceService.getRedisClient();
-
+        shardedJedis.hsetnx(SystemConstants.APP_GLOBAL_VARIABLE.getBytes(), key.getBytes(), SerializeUtils.serializeObject(obj));
+        // TODO 将数据的有效时间添加进去
+        redisSourceService.returnResource(shardedJedis);
     }
 
     @Override
-    public Object getString(String key) {
-        return null;
+    public Object get(String key) {
+        ShardedJedis shardedJedis = redisSourceService.getRedisClient();
+        byte[] obj = shardedJedis.hget(SystemConstants.APP_GLOBAL_VARIABLE.getBytes(), key.getBytes());
+        redisSourceService.returnResource(shardedJedis);
+        return SerializeUtils.deserializeObject(obj);
     }
 
     @Override
-    public boolean deleteCache(String key) {
-        return false;
+    public boolean delete(String key) {
+        ShardedJedis shardedJedis = redisSourceService.getRedisClient();
+        Long rs;
+        rs = shardedJedis.hdel(SystemConstants.APP_GLOBAL_VARIABLE.getBytes(), key.getBytes());
+        redisSourceService.returnResource(shardedJedis);
+        return rs >= 0;
     }
 }
