@@ -1,4 +1,4 @@
-package com.wscq.baseWeiChat.service;
+package com.wscq.baseWeiChat.service.cache;
 
 import com.wscq.baseWeiChat.domain.model.Account;
 import com.wscq.baseWeiChat.domain.service.cache.CacheService;
