@@ -11,6 +11,7 @@
     <sec:http pattern="/public/**" security="none"/>
     <sec:http pattern="/wechat**" security="none"/>
     <sec:http pattern="/resources/**" security="none"/>
+    <sec:http pattern="/" security="none"/>
     <!-- <sec:http pattern="/mail/send" security="none" /> -->
 
     <sec:http>
@@ -20,7 +21,7 @@
         <sec:access-denied-handler ref="accessDeniedHandler"/>
         <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
         <sec:session-management/>
-        <sec:form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error=true"/>
+        <sec:form-login login-page="/login" default-target-url="/index" always-use-default-target="false" authentication-failure-url="/login?error=true"/>
         <sec:logout logout-success-url="/" delete-cookies="JSESSIONID"/>
         <sec:intercept-url pattern="/login" access="permitAll"/>
         <sec:intercept-url pattern="/**" access="isAuthenticated()"/>

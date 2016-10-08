@@ -21,9 +21,9 @@ import java.util.Map;
  * Created by zs on 16/9/27.
  */
 @Service
-public class WeichatService {
+public class AccessTokenService {
 
-    private static final Logger logger = LoggerFactory.getLogger(WeichatService.class);
+    private static final Logger logger = LoggerFactory.getLogger(AccessTokenService.class);
 
     @Inject
     CacheService cacheService;
@@ -50,6 +50,7 @@ public class WeichatService {
                 return temp[0];
             }
         }
+        // access过期, 发起请求获取新的token
         try{
             String requestURL = new URIBuilder(SystemConstants.WECHAT_ACCESS_TOKEN_URL)
                     .addParameter("appid", systemConfig.appId)
@@ -60,6 +61,7 @@ public class WeichatService {
             Map map = JSON.parseObject(str, Map.class);
             accessTokenCache = (String) map.get("access_token");
         } catch (Exception e) {
+            logger.error("get access_token error");
             throw new RuntimeException(e);
         }
         if (accessTokenCache != null) {

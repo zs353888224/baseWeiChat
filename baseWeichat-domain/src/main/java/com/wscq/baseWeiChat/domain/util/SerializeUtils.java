@@ -1,4 +1,4 @@
-package com.wscq.baseWeiChat.domain.service.cache;
+package com.wscq.baseWeiChat.domain.util;
 
 import de.ruedigermoeller.serialization.FSTConfiguration;
 import org.slf4j.Logger;

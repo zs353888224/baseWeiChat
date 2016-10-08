@@ -1,6 +1,7 @@
 package com.wscq.baseWeiChat.domain.service.cache;
 
 import com.wscq.baseWeiChat.domain.constants.SystemConstants;
+import com.wscq.baseWeiChat.domain.util.SerializeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

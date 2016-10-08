@@ -1,6 +1,7 @@
 package com.wscq.baseWeiChat.web.controller;
 
 import com.wscq.baseWeiChat.domain.config.SystemConfig;
+import com.wscq.baseWeiChat.domain.service.weichat.WechatService;
 import com.wscq.baseWeiChat.domain.util.WechatAuthenticationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,9 @@ public class WeiChatController {
     @Inject
     SystemConfig systemConfig;
 
+    @Inject
+    WechatService wechatService;
+
     /**
      * 处理微信的统一消息
      *
@@ -38,19 +42,22 @@ public class WeiChatController {
     @ResponseBody
     public void weichat(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String echostr = request.getParameter("echostr");
-        // 判断是否是微信的主动请求
+        // 判断是否是微信的验证请求
         if (echostr != null) {
             if (checkSignature(request)){
                 response.getWriter().write(echostr);
                 logger.info("echo: {} from weichat service.", echostr);
             }
-        } else {// 处理微信的消息队列
-            // TODO 以后再补上
+        } else {
+            // 处理微信主动发起的消息, 包括:
+            // 各种事件推送: 用户关注/取消关注, 带参数二维码, 上报地理位置, 自定义菜单等
+            // 用户发送的消息: 文本, 图片, 视频等
+            wechatService.handleWechatPushMessage(request, response);
         }
     }
 
     /**
-     * 验证微信的主动认证
+     * 验证微信的主动认证的签名
      *
      * @param request
      * @return
