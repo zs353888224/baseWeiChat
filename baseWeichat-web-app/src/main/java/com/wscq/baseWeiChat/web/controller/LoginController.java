@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController extends BaseController {
 
+    @RequestMapping("/")
+    public String toIndex(){
+        return "redirect:/index";
+    }
+
     /**
      * 进入登录页面
      *

@@ -4,6 +4,7 @@ dependencies {
     compile("org.terasoluna.gfw:terasoluna-gfw-jodatime:${terasolunaVersion}")
     compile("org.terasoluna.gfw:terasoluna-gfw-mybatis3:${terasolunaVersion}")
     compile("org.terasoluna.gfw:terasoluna-gfw-recommended-dependencies:${terasolunaVersion}")
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.1.15'
 
     /*
     connection pool

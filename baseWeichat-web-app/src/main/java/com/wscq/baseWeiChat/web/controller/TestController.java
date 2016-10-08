@@ -36,7 +36,6 @@ public class TestController {
 
         response.getWriter().append("str is:").append(str1).append("\nobject is:" + str2.getStatus()).append("\ntest delete:").append(sss).flush();
 
-
     }
 
 
