@@ -25,6 +25,8 @@ public class AccessTokenService {
 
     private static final Logger logger = LoggerFactory.getLogger(AccessTokenService.class);
 
+    private static final String WECHAT_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token";
+
     @Inject
     CacheService cacheService;
 
@@ -50,9 +52,10 @@ public class AccessTokenService {
                 return temp[0];
             }
         }
-        // access过期, 发起请求获取新的token
+        // access过期, 发起请求获取新的token(暂时没有多次访问的情况)
         try{
-            String requestURL = new URIBuilder(SystemConstants.WECHAT_ACCESS_TOKEN_URL)
+            logger.info("take access_token from wechat {}", nowTime);
+            String requestURL = new URIBuilder(WECHAT_ACCESS_TOKEN_URL)
                     .addParameter("appid", systemConfig.appId)
                     .addParameter("secret", systemConfig.secret)
                     .addParameter("grant_type", "client_credential")

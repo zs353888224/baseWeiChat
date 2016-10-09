@@ -1,6 +1,6 @@
 package com.wscq.baseWeiChat.service.weichat;
 
-import com.wscq.baseWeiChat.domain.service.weichat.WeichatService;
+import com.wscq.baseWeiChat.domain.service.weichat.AccessTokenService;
 import org.elasticsearch.common.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 public class WeichatTest {
 
     @Inject
-    private WeichatService weichatOAuthService;
+    private AccessTokenService weichatOAuthService;
     @Test
     public void testFSDF() throws MalformedURLException {
         String str = weichatOAuthService.getAccessToken();

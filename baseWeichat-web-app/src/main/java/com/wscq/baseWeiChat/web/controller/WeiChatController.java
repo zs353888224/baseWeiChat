@@ -44,7 +44,7 @@ public class WeiChatController {
         String echostr = request.getParameter("echostr");
         // 判断是否是微信的验证请求
         if (echostr != null) {
-            if (checkSignature(request)){
+            if (checkSignature(request)) {
                 response.getWriter().write(echostr);
                 logger.info("echo: {} from weichat service.", echostr);
             }
@@ -62,7 +62,7 @@ public class WeiChatController {
      * @param request
      * @return
      */
-    private boolean checkSignature(HttpServletRequest request){
+    private boolean checkSignature(HttpServletRequest request) {
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
