@@ -19,6 +19,8 @@ public interface CacheService {
      */
     void save(String key, Serializable obj, Integer time);
 
+    void save(String key, Serializable obj);
+
     Object get(String key);
 
     boolean delete(String key);

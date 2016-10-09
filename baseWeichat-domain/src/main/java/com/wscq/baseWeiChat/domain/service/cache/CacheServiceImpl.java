@@ -30,6 +30,11 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
+    public void save(String key, Serializable obj) {
+        save(key, obj, 100);
+    }
+
+    @Override
     public Object get(String key) {
         ShardedJedis shardedJedis = redisSourceService.getRedisClient();
         byte[] obj = shardedJedis.hget(SystemConstants.APP_GLOBAL_VARIABLE.getBytes(), key.getBytes());

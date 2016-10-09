@@ -3,6 +3,7 @@ package com.wscq.baseWeiChat.web.controller;
 import com.wscq.baseWeiChat.domain.config.SystemConfig;
 import com.wscq.baseWeiChat.domain.service.weichat.WechatService;
 import com.wscq.baseWeiChat.domain.util.WechatAuthenticationUtil;
+import com.wscq.baseWeiChat.web.controller.common.BaseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,8 @@ public class WeiChatController {
             // 各种事件推送: 用户关注/取消关注, 带参数二维码, 上报地理位置, 自定义菜单等
             // 用户发送的消息: 文本, 图片, 视频等
             wechatService.handleWechatPushMessage(request, response);
+            // TODO 此处为防止微信端重复发起请求设置的默认回复, 当业务扩展的时候因更改此处逻辑
+            response.getWriter().write(BaseResult.SUCCESS);
         }
     }
 
