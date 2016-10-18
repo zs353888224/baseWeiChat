@@ -15,7 +15,6 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/test-context.xml")
-
 public class mybatisTest {
 
     @Inject
