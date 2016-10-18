@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wscq.baseWeiChat.domain.repository.mybatis.TUserMapper" >
+    <resultMap id="BaseResultMap" type="com.wscq.baseWeiChat.domain.model.mybatis.gen.TUser" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="NAME" property="employeeId" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="queryByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
+        select * from t_user where id = #{id, jdbcType=INTEGER};
+    </select>
+
+</mapper>

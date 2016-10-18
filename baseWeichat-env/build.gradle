@@ -14,7 +14,7 @@ dependencies {
 
 task copyConf {
     doFirst {
-        def p = "dev"
+        def p = "local"
         if (project.hasProperty("profile")) {
             p = "${profile}"
         }

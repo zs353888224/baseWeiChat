@@ -1,14 +1,19 @@
 package com.wscq.baseWeiChat.web.controller;
 
+import com.wscq.baseWeiChat.domain.model.mybatis.gen.TUser;
+import com.wscq.baseWeiChat.domain.repository.mybatis.TUserMapper;
 import com.wscq.baseWeiChat.domain.service.cache.CacheService;
 import com.wscq.baseWeiChat.web.controller.dto.APIResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by zs on 16/9/29.
@@ -19,6 +24,9 @@ public class TestController {
 
     @Inject
     private CacheService cacheService;
+
+    @Inject
+    private TUserMapper tUserMapper;
 
     @RequestMapping("/test")
     public void testSDA(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -38,4 +46,16 @@ public class TestController {
 
     }
 
+    @RequestMapping("/testMap")
+    public String testMap(HttpServletRequest request, Model model){
+        return "test/test_map";
+    }
+
+    @RequestMapping("/testsql")
+    @ResponseBody
+    public String testMybatis(){
+        TUser tUser = tUserMapper.queryByPrimaryKey(1);
+        List<TUser> list = tUserMapper.queryAll2();
+        return "hello mybatis";
+    }
 }
