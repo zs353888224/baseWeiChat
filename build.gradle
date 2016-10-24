@@ -2,6 +2,7 @@ allprojects {
     apply plugin: 'maven'
     apply plugin: 'java'
     apply plugin: 'idea'
+    apply plugin: 'eclipse'
 
     group = 'com.wscq'
     version = '1.0-SNAPSHOT'
