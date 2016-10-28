@@ -15,8 +15,7 @@ import java.util.regex.Pattern;
 public class CsrfSecurityRequestMatcher implements RequestMatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(CsrfSecurityRequestMatcher.class);
 
-    private Pattern allowedMethods = Pattern
-            .compile("^(GET|HEAD|TRACE|OPTIONS)$");
+    private Pattern allowedMethods = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
 
     public boolean matches(HttpServletRequest request) {
         if (CollectionUtils.isNotEmpty(execludeUrls)) {
