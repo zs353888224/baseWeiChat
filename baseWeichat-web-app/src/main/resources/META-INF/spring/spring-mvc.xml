@@ -17,8 +17,7 @@
     <!-- 自动扫描的包 -->
     <context:component-scan base-package="com.wscq.baseWeiChat.web"/>
 
-    <mvc:resources mapping="/resources/**" location="/resources/,classpath:META-INF/resources/"
-                   cache-period="#{60 * 60}"/>
+    <mvc:resources mapping="/resources/**" location="/resources/,classpath:META-INF/resources/" cache-period="#{60 * 60}"/>
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>

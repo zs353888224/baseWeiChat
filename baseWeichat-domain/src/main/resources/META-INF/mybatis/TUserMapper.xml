@@ -60,4 +60,5 @@
     <select id="queryByPrimaryKey" parameterType="Integer" resultMap="BaseResultMap">
         select * from t_user where id = #{id, jdbcType=INTEGER};
     </select>
+
 </mapper>

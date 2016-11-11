@@ -11,6 +11,7 @@
     <sec:http pattern="/public/**" security="none"/>
     <sec:http pattern="/wechat**" security="none"/>
     <sec:http pattern="/resources/**" security="none"/>
+    <sec:http pattern="/index" security="none"/>
     <sec:http pattern="/" security="none"/>
     <!-- <sec:http pattern="/mail/send" security="none" /> -->
 
@@ -21,7 +22,8 @@
         <sec:access-denied-handler ref="accessDeniedHandler"/>
         <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
         <sec:session-management/>
-        <sec:form-login login-page="/login" default-target-url="/index" always-use-default-target="false" authentication-failure-url="/login?error=true"/>
+        <sec:form-login login-page="/login" default-target-url="/index" always-use-default-target="false"
+                        authentication-failure-url="/login?error=true"/>
         <sec:logout logout-success-url="/" delete-cookies="JSESSIONID"/>
         <sec:intercept-url pattern="/login" access="permitAll"/>
         <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
@@ -35,13 +37,13 @@
 
     <!-- 之前出现Bad credentials的问题, 因为没有进行session设置, 登录老是报错, 目前已修正-->
     <!--<sec:authentication-manager>-->
-        <!--<sec:authentication-provider ref="authenticationProvider">-->
-        <!--</sec:authentication-provider>-->
+    <!--<sec:authentication-provider ref="authenticationProvider">-->
+    <!--</sec:authentication-provider>-->
     <!--</sec:authentication-manager>-->
     <!--<bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">-->
-        <!--<property name="userDetailsService" ref="wscqUserDetailsService" />-->
-        <!--<property name="hideUserNotFoundExceptions" value="false" />-->
-        <!--<property name="passwordEncoder" ref="passwordEncoder"/>-->
+    <!--<property name="userDetailsService" ref="wscqUserDetailsService" />-->
+    <!--<property name="hideUserNotFoundExceptions" value="false" />-->
+    <!--<property name="passwordEncoder" ref="passwordEncoder"/>-->
     <!--</bean>-->
 
     <!-- CSRF Protection 设置免去CSRF验证的地址 -->

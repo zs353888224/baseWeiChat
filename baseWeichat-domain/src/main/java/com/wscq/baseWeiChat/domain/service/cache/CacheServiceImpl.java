@@ -25,13 +25,13 @@ public class CacheServiceImpl implements CacheService {
     public void save(String key, Serializable obj, Integer time) {
         ShardedJedis shardedJedis = redisSourceService.getRedisClient();
         shardedJedis.hsetnx(SystemConstants.APP_GLOBAL_VARIABLE.getBytes(), key.getBytes(), SerializeUtils.serializeObject(obj));
-        // TODO 将数据的有效时间添加进去
+        // TODO 将数据的有效时间添加进去, 目前只能自己设置有效时间来检测
         redisSourceService.returnResource(shardedJedis);
     }
 
     @Override
     public void save(String key, Serializable obj) {
-        save(key, obj, 100);
+        save(key, obj, null);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.wscq.baseWeiChat.domain.service.weichat;
 
 import com.wscq.baseWeiChat.domain.model.WechatUserInfo;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,5 +29,10 @@ public interface WechatService {
      */
     WechatUserInfo getUserInfo(String openId);
 
-
+    /**
+     * 获取js验证JSON
+     *
+     * @return
+     */
+    JSONObject getJsTicket(String url) throws JSONException;
 }

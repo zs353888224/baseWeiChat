@@ -16,12 +16,14 @@ public interface TUserMapper extends CrudMapper<TUser, Integer> {
 
     /**
      * 常规配置XML的用法
+     *
      * @return
      */
     TUser queryByPrimaryKey(Integer id);
 
     /**
      * 简洁版注释用法
+     *
      * @return
      */
     @Select("select * from t_user")

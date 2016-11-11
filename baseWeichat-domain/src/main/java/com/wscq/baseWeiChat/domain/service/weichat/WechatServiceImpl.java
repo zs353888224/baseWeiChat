@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.wscq.baseWeiChat.domain.model.WechatEventMessage;
 import com.wscq.baseWeiChat.domain.model.WechatUserInfo;
+import com.wscq.baseWeiChat.domain.util.WechatAuthenticationUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -85,6 +89,35 @@ public class WechatServiceImpl implements WechatService{
         userInfo.setSubscribe(getMapValue(info, "subscribe", Integer.class, 0));
         userInfo.setUnionid(getMapValue(info, "unionid", String.class, ""));
         return userInfo;
+    }
+
+    @Override
+    public JSONObject getJsTicket(String url) throws JSONException {
+        JSONObject obj = new JSONObject();
+        // TODO 生成随机字符串
+        String noncestr = "dasdasda";
+        String jsTicket = accessTokenService.getJsTicket();
+        // 获取时间戳
+        long timestamp = System.currentTimeMillis() / 1000;
+        String pragms[] = {
+                "noncestr=" + noncestr,
+                "jsapi_ticket=" + jsTicket,
+                "timestamp=" + timestamp,
+                "url=" + url
+        };
+        Arrays.sort(pragms);
+//        String str1 = pragms[0].concat("&" + pragms[1]).concat("&" + pragms[2]).concat("&" + pragms[3]);
+        String str1 = pragms[0] + "&" + pragms[1] + "&" + pragms[2] + "&" + pragms[3];
+        logger.info("JsTicket middle str is: {}", str1);
+        // 用sha1算法得到签名
+        String signature = WechatAuthenticationUtil.encode(str1);
+
+        obj.put("noncestr", noncestr);
+        obj.put("jsapi_ticket", jsTicket);
+        obj.put("timestamp", timestamp);
+        obj.put("url", url);
+        obj.put("signature", signature);
+        return obj;
     }
 
     /**

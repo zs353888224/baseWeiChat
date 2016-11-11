@@ -28,6 +28,11 @@ public class TestController {
     @Inject
     private TUserMapper tUserMapper;
 
+    /**
+     * 测试controller是单列的
+     */
+    private int key = 0;
+
     @RequestMapping("/test")
     public void testSDA(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String str = "hello redis!";
@@ -43,19 +48,41 @@ public class TestController {
         String sss = (String) cacheService.get("test");
 
         response.getWriter().append("str is:").append(str1).append("\nobject is:" + str2.getStatus()).append("\ntest delete:").append(sss).flush();
-
     }
 
     @RequestMapping("/testMap")
-    public String testMap(HttpServletRequest request, Model model){
+    public String testMap(HttpServletRequest request, Model model) {
         return "test/test_map";
     }
 
     @RequestMapping("/testsql")
     @ResponseBody
-    public String testMybatis(){
+    public String testMybatis() {
         TUser tUser = tUserMapper.queryByPrimaryKey(1);
         List<TUser> list = tUserMapper.queryAll2();
         return "hello mybatis";
+    }
+
+    @RequestMapping("/testSet")
+    @ResponseBody
+    public String testIsPrototype() {
+        return "this is set :" + this.key++;
+    }
+
+    @RequestMapping("/testRead")
+    @ResponseBody
+    public String testIsPrototype2() {
+        return "this is read :" + key;
+    }
+
+    @RequestMapping("/testJs")
+    public String testFSDFSF() {
+        return "test/wechatJsTest";
+    }
+
+    @RequestMapping("/testAjax")
+    @ResponseBody
+    public APIResult testGSDDS(HttpServletRequest request) {
+        return APIResult.success();
     }
 }

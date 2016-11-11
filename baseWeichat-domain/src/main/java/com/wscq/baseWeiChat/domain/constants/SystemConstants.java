@@ -17,4 +17,5 @@ public class SystemConstants {
      */
     public static final String WEICHAT_ACCESS_TOKEN = "WEICHAT_ACCESS_TOKEN";
 
+    public static final String WECHAT_JS_TICKET = "WECHAT_JS_TICKET";
 }

@@ -4,10 +4,14 @@ import com.wscq.baseWeiChat.domain.config.SystemConfig;
 import com.wscq.baseWeiChat.domain.service.weichat.WechatService;
 import com.wscq.baseWeiChat.domain.util.WechatAuthenticationUtil;
 import com.wscq.baseWeiChat.web.controller.common.BaseResult;
+import com.wscq.baseWeiChat.web.controller.dto.APIResult;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
@@ -57,6 +61,25 @@ public class WeiChatController {
             // TODO 此处为防止微信端重复发起请求设置的默认回复, 当业务扩展的时候应更改此处逻辑
             response.getWriter().write(BaseResult.SUCCESS);
         }
+    }
+
+    /**
+     *
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/public/sign", method = RequestMethod.GET)
+    public APIResult sign(HttpServletRequest request, @RequestParam String url){
+        try {
+            String data = wechatService.getJsTicket(url).toString();
+            logger.info("test is that:{}", data);
+            return APIResult.success().setData(data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

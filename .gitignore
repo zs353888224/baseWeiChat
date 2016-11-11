@@ -1,6 +1,11 @@
 # Created by .ignore support plugin (hsz.mobi)
 baseWeichat-domain/sadsa.txt
-
+.idea/
+.gradle/
+build/
+*/build/
+*/logs/
+baseWeichat.iml
 baseWeiChat.ipr
 baseWeiChat.iws
-baseWeichat-env/src/main/conf/local
+baseWeichat-env/src/main/conf/local/

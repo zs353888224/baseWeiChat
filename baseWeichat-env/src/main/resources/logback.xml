@@ -32,7 +32,7 @@
     </appender>
 
     <!-- Application Loggers -->
-    <logger name="com.taiping">
+    <logger name="com.wscq">
         <level value="debug" />
     </logger>
 

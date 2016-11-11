@@ -38,7 +38,6 @@ subprojects {
         maven { url "http://repo.maven.apache.org/maven2" }
     }
 
-
     apply from: "$rootProject.projectDir/gretty.plugin"
 
     gretty {
@@ -56,7 +55,7 @@ subprojects {
         reloadOnConfigChange = true
         reloadOnLibChange = true
         contextPath = '/wscq/'
-        jvmArgs = ['-Xmx1024M', '-XX:PermSize=128M', '-XX:MaxPermSize=256M']
+        jvmArgs = ['-Xmx1024M']
         servletContainer = 'tomcat8'
         inplaceMode = 'hard'
         debugSuspend = false

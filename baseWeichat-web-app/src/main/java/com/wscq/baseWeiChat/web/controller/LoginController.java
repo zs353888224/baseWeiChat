@@ -44,9 +44,13 @@ public class LoginController extends BaseController {
      */
     @RequestMapping("/index")
     public String index(Model model, HttpServletRequest request) {
+        if (!this.isLogined(request)) {
+            model.addAttribute("name" , "passer");
+        } else {
+            String name = this.getUserInfo(request).getUserName();
+            model.addAttribute("name", name);
+        }
 
-        String name = this.getUserInfo(request).getUserName();
-        model.addAttribute("name", name);
         // 微信用户自动登录
         return "login/index";
     }
